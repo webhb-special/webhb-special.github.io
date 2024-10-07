@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+        }
+
+        #console {
+            border: 1px solid #00ff00;
+            padding: 10px;
+            width: 80%;
+            margin: 50px auto;
+            min-height: 100px;
+        }
+
+        .typing {
+            display: inline-block;
+            border-right: 2px solid #00ff00;
+            animation: blink 0.7s steps(2) infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="console">
+        <span id="message"></span><span class="typing"></span>
+    </div>
+
+    <script>
+        //const message = "Feliz cumpleaños!!\nEspero que tengas un día lleno de alegría!\nEres muy especial";
+        const message = "Buenos días señorita,\n        \nHoy es siete del diez, dos números muy especiales y difíciles de olvidar jajaja.\nEspero que la pases demasiado biennn! que puedas comer rico, pasarla bonito y disfrutarlo lo mejor que puedas.\nQue Dios te siga acompañando en cada área de tu vida, tu carrera, tu ministerio, tus hobbies, tus cafeterías o esos lugares nuevos que tienes por conocer, tu familia, deseos y anhelos.\nEres de gran bendición, Mari, y aún esas cosas que sé que Dios irá perfeccionando son de ejemplo no solo para tus chicos en la iglesia, sino para la gente que tenemos el honor de conocerte.\nY bueno... creo que no hace falta que te diga, que espero mañana se pueda seguir el tono jajaja.\n\n¡¡Feliz cumpleaños Mari!! Un abrazo giganteeee."
+        const lines = message.split('\n'); // Dividir el mensaje en líneas
+        let lineIndex = 0;
+        let charIndex = 0;
+
+        function typeMessage() {
+            if (lineIndex < lines.length) {
+                if (charIndex < lines[lineIndex].length) {
+                    document.getElementById("message").innerHTML += lines[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeMessage, 100); // Velocidad de digitación (en milisegundos)
+                } else {
+                    // Agregar un salto de línea después de cada línea
+                    document.getElementById("message").innerHTML += '<br>';
+                    lineIndex++;
+                    charIndex = 0; // Reiniciar el índice de caracteres para la siguiente línea
+                    setTimeout(typeMessage, 500); // Esperar un poco antes de escribir la siguiente línea
+                }
+            }
+        }
+
+        window.onload = function() {
+            typeMessage();
+        };
+    </script>
+</body>
+</html>
